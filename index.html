@@ -229,10 +229,11 @@ let gpsWatch    = null, maxSpd = 0, spds = [];
 // ── API ───────────────────────────────────
 // Lokaal (ovproxy.py): PROXY = ''
 // GitHub Pages: PROXY = 'https://jouw-worker.workers.dev'
-const PROXY = 'https://bitter-heart-a9da.aidenelias193.workers.dev/';
+const PROXY = 'https://bitter-heart-a9da.aidenelias193.workers.dev';
 
 async function api(path) {
-  const r = await fetch(PROXY + '/api' + path);
+  const url = PROXY + '/api/' + path.replace(/^\/+/, '');
+  const r = await fetch(url);
   if (!r.ok) throw new Error('HTTP ' + r.status);
   return r.json();
 }
